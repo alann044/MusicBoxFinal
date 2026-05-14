@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Novedades - MusicBox{% endblock %}
+
+{% block content %}
+<div class="store-container">
+    {% if search_query %}
+    <h1>Resultados de búsqueda</h1>
+    <p>Mostrando resultados para: <strong>"{{ search_query }}"</strong></p>
+    {% else %}
+    <h1>Catálogo</h1>
+    <p>Descubre nuestros productos disponibles.</p>
+    {% endif %}
+
+    <div class="product-grid">
+        {% if productos %}
+            {% for producto in productos %}
+            <div class="product-card">
+                <a href="{{ url_for('product_detail', product_id=producto.id) }}">
+                    <img src="{{ producto.image_url }}" alt="{{ producto.title }}" class="product-img">
+                    <div class="product-title">{{ producto.title }}</div>
+                    <div class="product-price">${{ producto.price }} MXN</div>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay productos disponibles por el momento.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

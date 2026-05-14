@@ -1,0 +1,207 @@
+header {
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px 0 20px;
+}
+
+header #check {
+    display: none;
+}
+
+header .chbtn {
+    display: block;
+    cursor: pointer;
+}
+
+#check:checked~nav {
+    left: 0;
+}
+
+header .bur {
+    color: #eeeeee;
+    font-size: 3rem;
+    transition: 0.2s;
+}
+
+header .bur:hover{
+    color: #f8ed55;
+}
+
+header nav {
+    width: 15%;
+    height: 100%;
+    margin: 0;
+    padding: 30px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    overflow: auto;
+    background-color: #171717;
+    transition: all .5s;
+}
+
+header nav .menu{
+    width: 80%;
+    margin: 0 auto;
+}
+
+li{
+    list-style: none;
+}
+
+header nav a {
+    font-size: 1.3rem;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #F4F2EF;
+    transition: .2s;
+}
+
+header nav .cerrar {
+    color: #ff5e5e;
+    transition: .2s;
+}
+
+header nav li ul {
+    display: none;
+}
+
+header nav li:hover>ul {
+    display: block;
+}
+
+header nav .menu li .submenu a {
+    font-size: 1.1rem;
+    color: #b5b5b5;
+    padding: 0 10px;
+}
+
+header nav .menu li .submenu a:hover {
+    color: #f8ed55;
+}
+
+.inf-menu {
+    position: relative;
+}
+
+.inf-menu::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f8ed55;
+    transform-origin: bottom left;
+    transition: transform 0.5s ease-out;
+}
+
+.inf-menu:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+header .access{
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .access a{
+    color: #eeeeee;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+header .access a:nth-child(2){
+    color: #f8ed55;
+    border: solid 2px #f8ed55;
+}
+
+header .access a:hover{
+    color: #171717;
+    background-color: #f8ed55;
+}
+
+/*Footerrrrrr*/
+footer{
+    display: inline-flex;
+    width: 100%;
+    height: auto;
+    padding: 100px 5%;
+    background-color: #171717;
+}
+.cosas{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cosas img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+.cosas .social{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.cosas .social a i{
+    color: #f8ed55;
+    font-size: 3rem;
+    transition: 0.3s;
+}
+.cosas .social a i:hover{
+    color: #eeeeee;
+}
+.foot-menu{
+    width: 70%;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.foot-menu ul{
+    color: #eeeeee;
+    font-size: 1rem;
+}
+.foot-menu ul li h5{
+    color: #f8ed55;
+    font-size: 1.1rem;
+}
+.foot-menu ul li{
+    margin-bottom: 10px;
+}
+.foot-menu ul li a{
+    color: #eeeeee;
+    font-size: 1rem;
+}
+
+/*---------- CopyR ----------*/
+
+.copysec{
+    width: 100%;
+    height: 3vw;
+    background-color: #f8ed55;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.copysec p{
+    color: #171717;
+    font-size: 1rem;
+}
+.copysec p a{
+    text-decoration: underline;
+    color: #171717;
+}

@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #F8E71C; /* Amarillo brillante */
+    --black-color: #000000;
+    --white-color: #FFFFFF;
+    --text-color: #333333;
+    --border-color: #DDDDDD;
+    --bg-light: #F9F9F9;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--white-color);
+    line-height: 1.6;
+}
+
+/* Tipografía */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--black-color);
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--white-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hamburger {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--white-color);
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.search-bar {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #1A237E; /* Azul oscuro como en el mockup */
+    color: var(--white-color);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0D47A1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3);
+}
+
+.btn-yellow {
+    background-color: var(--primary-color);
+    color: var(--black-color);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow:hover {
+    filter: brightness(0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(248, 231, 28, 0.4);
+}
+
+.btn-back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: transparent;
+    border: 2px solid var(--black-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn-back-top:hover {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+/* Home / Hero */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    background: url('../img/hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    text-align: center;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.collection-section {
+    background-color: var(--primary-color);
+    padding: 5rem 2rem;
+    text-align: center;
+    color: var(--black-color);
+}
+
+.collection-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.collection-section p {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Grid de Productos */
+.store-container {
+    padding: 3rem 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    text-align: center;
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.product-price {
+    color: #555;
+}
+
+/* Detalle de Producto */
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-main-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+/* Carrito */
+.cart-container {
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.cart-table th, .cart-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+/* Formularios Auth */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--bg-light);
+}
+
+.auth-card {
+    background: var(--white-color);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tab.active {
+    border-bottom: 2px solid var(--black-color);
+    color: var(--black-color);
+}

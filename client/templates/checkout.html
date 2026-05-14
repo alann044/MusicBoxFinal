@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Compra Exitosa - MusicBox{% endblock %}
+
+{% block content %}
+<div class="cart-container" style="text-align: center; padding: 5rem 2rem;">
+    <h1 style="color: #4CAF50; font-size: 3rem;">¡Compra Exitosa!</h1>
+    <p style="font-size: 1.2rem; margin-top: 1rem;">Gracias por tu compra en MusicBox.</p>
+    <p style="font-size: 1.5rem; font-weight: bold; margin-top: 1rem;">Total Pagado: ${{ total }} MXN</p>
+    
+    <div style="margin-top: 3rem;">
+        <a href="{{ url_for('store') }}" class="btn-primary">Seguir Comprando</a>
+        <a href="{{ url_for('profile') }}" class="btn-yellow" style="margin-left: 1rem;">Ver mis pedidos</a>
+    </div>
+</div>
+{% endblock %}

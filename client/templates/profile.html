@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Mi Perfil - MusicBox{% endblock %}
+
+{% block content %}
+<div class="cart-container" style="padding: 3rem 2rem;">
+    <h1 style="margin-bottom: 2rem;">Hola, {{ user.fname }} {{ user.lastname }}</h1>
+    
+    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem;">
+        <div style="background: #1a1a1a; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); color: #ffffff; box-shadow: 0 8px 16px rgba(0,0,0,0.4); height: fit-content;">
+            <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">Mi Cuenta</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 1rem;"><strong style="color: var(--primary-color);">Email:</strong><br>{{ user.email }}</li>
+                <li style="margin-bottom: 1rem;"><strong style="color: var(--primary-color);">Rol:</strong><br>{{ user.role | capitalize }}</li>
+                <li style="margin-top: 2rem;"><a href="{{ url_for('settings') }}" class="btn-primary" style="display: block; text-align: center; width: 100%;">Configuración</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            {% if user.role == 'client' %}
+            <h3 style="margin-bottom: 1rem;">Historial de Pedidos</h3>
+            {% if historial %}
+                {% for orden in historial %}
+                <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; background: #1a1a1a; color: #ffffff; box-shadow: 0 8px 16px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.8rem;">
+                        <strong style="font-size: 1.1rem;">Orden #{{ orden.order_id }}</strong>
+                        <span style="color: #bbb;">{{ orden.created_at }}</span>
+                        <strong style="color: var(--primary-color); font-size: 1.1rem;">${{ orden.total_price }} MXN</strong>
+                    </div>
+                    {% for item in orden['items'] %}
+                    <div style="display: flex; gap: 1rem; margin-bottom: 0.8rem; align-items: center; background: #111; padding: 0.8rem; border-radius: 8px;">
+                        <img src="{{ item.image_url }}" alt="{{ item.title }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid #333;">
+                        <div style="flex: 1; font-weight: 500;">{{ item.title }}</div>
+                        <div style="color: #ccc;">{{ item.quantity }} x <span style="color: #fff;">${{ item.item_price }}</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <div style="border: 1px solid #333; padding: 2rem; text-align: center; border-radius: 12px; background: #1a1a1a; color: #fff;">
+                    <p>Aún no has realizado ninguna compra.</p>
+                </div>
+            {% endif %}
+            {% endif %}
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Vistos Recientemente</h3>
+            {% if recent_products %}
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                {% for p in recent_products %}
+                    <a href="{{ url_for('product_detail', product_id=p.id) }}" style="text-decoration: none; color: inherit;">
+                        <div class="product-card" style="text-align: center; padding-bottom: 0.5rem; background: #1a1a1a; color: #ffffff; border: 1px solid #333;">
+                            <img src="{{ p.image_url }}" alt="{{ p.title }}" style="width: 100%; height: 150px; object-fit: cover;">
+                            <div style="padding: 0.8rem; font-size: 0.9rem;">
+                                <p style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;">{{ p.title }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div style="border: 1px solid #333; padding: 2rem; text-align: center; border-radius: 12px; background: #1a1a1a; color: #ffffff;">
+                    <p>No has visto ningún producto aún.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

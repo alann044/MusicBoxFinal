@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - MusicBox{% endblock %}
+
+{% block content %}
+<div class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); position: relative; height: 80vh; display: flex; align-items: center; justify-content: flex-start; text-align: left; padding: 0 10%;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%); z-index: 1;"></div>
+    <div class="hero-content" style="z-index: 2; position: relative; max-width: 600px;">
+        <h1 class="hero-title" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.9); font-weight: 800; font-size: 5rem; letter-spacing: 2px; line-height: 1.1; margin-bottom: 1rem; color: #fff;">El Sonido <br><span style="color: var(--primary-color);">Que Te Define</span></h1>
+        <p class="hero-subtitle" style="text-shadow: 1px 1px 8px rgba(0,0,0,0.9); font-weight: 400; font-size: 1.5rem; letter-spacing: 1px; color: #ddd; margin-bottom: 2.5rem;">Descubre la colección más grande de vinilos, CDs y cassettes en la frontera. Revive la experiencia del formato físico.</p>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{{ url_for('store') }}" class="btn-yellow" style="font-size: 1.1rem; padding: 1rem 2.5rem; box-shadow: 0 4px 15px rgba(248, 231, 28, 0.4);">Ver Catálogo</a>
+            <a href="{{ url_for('about') }}" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; background: transparent; border: 2px solid #fff; box-shadow: none;">Conócenos</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: -50px auto 4rem; position: relative; z-index: 3; padding: 0 2rem;">
+    <div style="background: #1a1a1a; padding: 2rem; border-radius: 12px; text-align: center; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #333;">
+        <i class="fas fa-record-vinyl" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+        <h3 style="margin-bottom: 1rem; color: #fff;">Formatos Clásicos</h3>
+        <p style="color: #bbb; font-size: 0.95rem;">Desde vinilos de 180g hasta cassettes vintage, preservamos la música en su estado más puro y original.</p>
+    </div>
+    <div style="background: #1a1a1a; padding: 2rem; border-radius: 12px; text-align: center; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #333;">
+        <i class="fas fa-tshirt" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+        <h3 style="margin-bottom: 1rem; color: #fff;">Merch Oficial</h3>
+        <p style="color: #bbb; font-size: 0.95rem;">Playeras, gorras y accesorios 100% originales de tus bandas favoritas para completar tu estilo.</p>
+    </div>
+    <div style="background: #1a1a1a; padding: 2rem; border-radius: 12px; text-align: center; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #333;">
+        <i class="fas fa-truck" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+        <h3 style="margin-bottom: 1rem; color: #fff;">Envíos y Retiros</h3>
+        <p style="color: #bbb; font-size: 0.95rem;">Recibe tu pedido en casa o recógelo en cualquiera de nuestras sucursales en Ciudad Juárez.</p>
+    </div>
+</div>
+
+<div class="collection-section">
+    <h2>Nuevas Colecciones Musicales</h2>
+    <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.6;">Explora nuestra selección cuidadosamente curada. En MusicBox nos dedicamos a traer la mejor cultura musical directamente a tus manos, preservando la magia del arte físico y el sonido analógico.</p>
+    <a href="{{ url_for('store') }}" class="btn-primary" style="background-color: var(--black-color); color: #fff;">Explorar Novedades</a>
+</div>
+{% endblock %}

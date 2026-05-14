@@ -1,0 +1,36 @@
+{% extends "navbar.html" %}
+
+{& block title &} Nosotros {% endblock %}
+
+{%block contend%}
+
+    <article>
+        <h1>Iniciar Sesión</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form class="form login" action="/login" method="POST" novalidate>
+
+            <div class="form_group">
+                <label for="email">Email: </label><br>
+                <input type="email" id="email" name="email" placeholder="name@mail.com" required autofocus aria-label="Email"><br>
+            </div>
+            <div class="form_group">
+                <label for="password">Contraseña: </label><br>
+                <input type="password" id="password" name="password" placeholder="Tu Contraseña" required aria-label="Contraseña"><br>
+            </div>
+
+            <div class="form_actions">
+                <input class="submit" type="submit" value="Entrar">
+            </div>
+
+            <div class="form_links">
+                <a href="/signup">¿No tienes cuenta? Crear cuenta</a>
+                &nbsp; | &nbsp;
+                <a href="/forgotpassword">¿Olvidaste tu contraseña?</a>
+            </div>
+
+        </form>
+    </article>
+
+{% endblock %}

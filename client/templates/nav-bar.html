@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/style-nav-bar.css">
+    <title>{% block title %}MusicBox{% endblock %}</title>
+</head>
+
+<body>
+    <header id="ini">
+        <!-- Menu de hamurguesa  -->
+        <input type="checkbox" id="check">
+        <label for="check" class="chbtn">
+            <i class='bx bx-menu bur'></i>
+        </label>
+        <!-- Menu de navegación  -->
+        <nav>
+            <div class="menu">
+                <li>
+                    <a class="inf-menu" href="#">Música</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">CD</a>
+                            <a href="#">Vinyl</a>
+                            <a href="#">Cassette</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="inf-menu" href="#">Merch</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">Ropa</a>
+                            <a href="#">Accesorios</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="inf-menu" href="#">Perfil</a>
+                </li>
+                <li>
+                    <a class="inf-menu" href="#contact">Nosotros</a>
+                </li>
+                <li>
+                    <a class="inf-menu" href="#contact">Ayuda</a>
+                </li>
+                <li>
+                    <a class="cerrar" href="#contact">Cerrar sesión</a>
+                </li>
+            </div>
+        </nav>
+        <!-- Menu de acceso  -->
+        <div class="access">
+            <a href="/signup">Iniciar sesión</a>
+            <a href="#">Registrarse</a>
+        </div>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <div class="cosas">
+            <a href="p2.html"><img src="img/logo.png" alt=""></a>
+            <div class="social">
+                <a href="https://www.facebook.com/Agenda2030MX" target="_blank"><i
+                        class='bx bxl-facebook-square'></i></a>
+                <a href="https://www.instagram.com/agenda2030mx/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.youtube.com/@AgendaMx-dz7xg" target="_blank"><i class='bx bxl-youtube'></i></a>
+                <a href="https://twitter.com/SecAgenda2030Mx" target="_blank"><i class='bx bxl-twitter'></i></a>
+            </div>
+        </div>
+        <div class="foot-menu">
+            <ul>
+                <li>
+                    <h5>Politicas</h5>
+                </li>
+                <li><a href="#">Políticas de privacidad</a></li>
+                <li><a href="#">Políticas de seguridad</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+            </ul>
+            <ul>
+                <li>
+                    <h5>Nosotros</h5>
+                </li>
+                <li><a href="#">Quienes somos</a></li>
+                <li><a href="#">Equipo</a></li>
+                <li><a href="#">Código de ética</a></li>
+                <li><a href="#">Fondos</a></li>
+
+            </ul>
+            <ul class="foot-contacto">
+                <li>
+                    <h5>Contacto</h5>
+                </li>
+                <li><a href="#registro">Registrate</a></li>
+                <li><a href="contacto.html">Contactanos</a></li>
+
+            </ul>
+            <ul>
+                <li>
+                    <h5>Temas</h5>
+                </li>
+                <li><a href="p2.html">Objetivos de desarrollo sostenible</a></li>
+                <li><a href="ods-13.html">ODS - 13</a></li>
+                <li><a href="ods-14.html">ODS - 14</a></li>
+                <li><a href="ods-15.html">ODS - 15</a></li>
+            </ul>
+        </div>
+
+    </footer>
+    <div class="copysec">
+        <p>©2023 <a href="../index.html">Webcita</a> para el Desarrollo Sostenible</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Publicar Producto - MusicBox{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card" style="max-width: 600px;">
+        <h2 style="margin-bottom: 2rem; text-align: center;">Publicar Nuevo Producto</h2>
+        
+        <form action="{{ url_for('publish') }}" method="POST">
+            <div class="form-group">
+                <label>Título del Producto</label>
+                <input type="text" name="title" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="description" class="form-control" rows="4"></textarea>
+            </div>
+            
+            <div style="display: flex; gap: 1rem;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Precio (MXN)</label>
+                    <input type="number" name="price" step="0.01" min="0" class="form-control" required>
+                </div>
+                
+                <div class="form-group" style="flex: 1;">
+                    <label>Stock Disponible</label>
+                    <input type="number" name="stock" min="1" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>URL de la Imagen</label>
+                <input type="url" name="image_url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+            
+            <div class="form-group">
+                <label>Categoría / Formato</label>
+                <select name="category" id="categorySelect" class="form-control" onchange="toggleFields()" required>
+                    <option value="cd">CD</option>
+                    <option value="vinyl">Vinilo</option>
+                    <option value="cassette">Cassette</option>
+                    <option value="merch">Merchandising</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="tracklistGroup">
+                <label>Tracklist (Lista de canciones)</label>
+                <textarea name="tracklist" class="form-control" rows="5" placeholder="1. Canción Uno&#10;2. Canción Dos"></textarea>
+            </div>
+            
+            <div class="form-group" id="sizesGroup" style="display: none;">
+                <label>Tallas / Tamaños disponibles</label>
+                <input type="text" name="sizes" class="form-control" placeholder="Ej: S, M, L, XL o Unitalla">
+            </div>
+            
+            <button type="submit" class="btn-yellow" style="width: 100%; margin-top: 1rem;">Publicar Producto</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleFields() {
+    const cat = document.getElementById('categorySelect').value;
+    const tracklistGroup = document.getElementById('tracklistGroup');
+    const sizesGroup = document.getElementById('sizesGroup');
+    
+    if(cat === 'merch') {
+        tracklistGroup.style.display = 'none';
+        sizesGroup.style.display = 'block';
+    } else {
+        tracklistGroup.style.display = 'block';
+        sizesGroup.style.display = 'none';
+    }
+}
+// Init en carga
+toggleFields();
+</script>
+{% endblock %}

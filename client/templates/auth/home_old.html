@@ -1,0 +1,16 @@
+{% extends "navbar.html" %}
+{% block tittle %}HOME{% endblock %}
+{% block content %}
+
+
+<article class="content">
+    {% if user %}
+    <h1 style="color: #188195";>¡Bienvenida!, {{user.frame}}</h1>
+    <p class="message">Has iniciado sesión exitosamente</p>
+    {% else %}
+    <h1>¡Bienvenida!</h1>
+    <p class="message">Contenido principal de la app</p>
+    {% endif %}
+    <p>Utiliza el navbar superior para navegar a tu perfil o cerrar sesion</p>
+</article>
+{% endblock %}

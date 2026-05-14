@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ producto.title }} - MusicBox{% endblock %}
+
+{% block content %}
+<div class="product-detail-container">
+    <div class="product-info">
+        <h1 style="font-size: 3rem; margin-bottom: 0;">{{ producto.title }}</h1>
+        <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Vendido por ID: {{ producto.seller_id }}</p>
+        
+        <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+            <span style="font-weight: bold; font-size: 1.2rem;">${{ producto.price }} MXN</span>
+            
+            {% if session.get('user_role') == 'client' %}
+            <form action="{{ url_for('add_to_cart', product_id=producto.id) }}" method="POST" style="display:flex; gap:10px;">
+                <input type="number" name="quantity" value="1" min="1" max="{{ producto.stock }}" class="form-control" style="width: 80px;">
+                <button type="submit" class="btn-primary">Agregar al carrito</button>
+            </form>
+            {% elif not session.get('logged_in') %}
+            <a href="{{ url_for('auth') }}" class="btn-primary">Inicia sesión para comprar</a>
+            {% endif %}
+        </div>
+
+        <h3 style="margin-top: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">DESCRIPCIÓN</h3>
+        <p style="margin-top: 1rem;">{{ producto.description }}</p>
+        
+        {% if producto.tracklist %}
+        <h3 style="margin-top: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">TRACKLIST</h3>
+        <p style="margin-top: 1rem; white-space: pre-wrap;">{{ producto.tracklist }}</p>
+        {% endif %}
+        
+        {% if producto.sizes %}
+        <h3 style="margin-top: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">TALLAS DISPONIBLES</h3>
+        <p style="margin-top: 1rem;">{{ producto.sizes }}</p>
+        {% endif %}
+        
+        <div style="margin-top: 2rem;">
+            <!-- Placeholder para métodos de pago -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 30px; margin-right: 15px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 30px;">
+        </div>
+    </div>
+    
+    <div>
+        <img src="{{ producto.image_url }}" alt="{{ producto.title }}" class="product-main-img">
+    </div>
+</div>
+{% endblock %}

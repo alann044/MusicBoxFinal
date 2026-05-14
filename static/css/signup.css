@@ -1,0 +1,47 @@
+section h1{
+    color: #f8ed55;
+}
+
+section{
+    background-color: black;
+    width: 30%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+}
+section form{
+    width: 80%;
+    height: auto;
+}
+section form .form_group{
+    width: 100%;
+}
+
+section form .form_group input{
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    padding: 0 10px;
+    border: 0;
+    font-size: 1rem;
+    color: #eeeeee;
+}
+
+section form .form_actions{
+    width: 100%;
+    text-align: center;
+}
+
+section form .form_actions input{
+    width: 40%;
+    height: 40px;
+    border-radius: 30px;
+    padding: 0 10px;
+    border: 0;
+    font-size: 1.3rem;
+    color: #171717;
+    background-color: #f8ed55;
+}

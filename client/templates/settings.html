@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Configuración - MusicBox{% endblock %}
+
+{% block content %}
+<div class="cart-container" style="padding: 3rem 2rem; max-width: 800px;">
+    <h1 style="margin-bottom: 2rem;">Configuración de la Cuenta</h1>
+    
+    <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h3>Información Personal</h3>
+        <p>Aquí puedes actualizar tus datos personales (Próximamente).</p>
+    </div>
+
+    <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h3>Notificaciones</h3>
+        <p>Administra tus preferencias de correo y alertas.</p>
+    </div>
+
+    <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h3>Ayuda y Devoluciones</h3>
+        <p>Consulta nuestra política de devoluciones o contacta a soporte.</p>
+    </div>
+
+    <div style="text-align: right;">
+        <a href="{{ url_for('logout') }}" class="btn-primary" style="background-color: #d32f2f;">Cerrar Sesión</a>
+    </div>
+</div>
+{% endblock %}
