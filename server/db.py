@@ -2,7 +2,6 @@ import mysql.connector
 from mysql.connector import errorcode
 import os
 
-# Configuración de la conexión MySQL
 db_config = {
     'user': 'root',
     'password': 'toor',
@@ -20,7 +19,6 @@ def init_db():
         
         cnx = mysql.connector.connect(**db_config)
         cursor = cnx.cursor()
-        # Modificar tabla de usuarios si no existe
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,7 +30,6 @@ def init_db():
             )
         """)
         
-        # Tabla de productos
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS products (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +46,6 @@ def init_db():
             )
         """)
         
-        # Tabla de carrito
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS cart (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,7 +57,6 @@ def init_db():
             )
         """)
         
-        # Tabla de ordenes
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS orders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,7 +67,6 @@ def init_db():
             )
         """)
         
-        # Tabla de order_items
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS order_items (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -190,7 +184,6 @@ def agregar_al_carrito(user_id, product_id, quantity=1):
     try:
         cnx = mysql.connector.connect(**db_config)
         cursor = cnx.cursor()
-        # Verificar si ya existe en el carrito
         cursor.execute("SELECT id, quantity FROM cart WHERE user_id = %s AND product_id = %s", (user_id, product_id))
         item = cursor.fetchone()
         if item:
@@ -242,10 +235,8 @@ def crear_orden(user_id, total, items):
     try:
         cnx = mysql.connector.connect(**db_config)
         cursor = cnx.cursor()
-        # Crear la orden
         cursor.execute("INSERT INTO orders (user_id, total_price) VALUES (%s, %s)", (user_id, total))
         order_id = cursor.lastrowid
-        # Insertar los items
         for item in items:
             cursor.execute("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)", 
                            (order_id, item['id'], item['quantity'], item['price']))
@@ -275,7 +266,6 @@ def obtener_historial_compras(user_id):
         cursor.close()
         cnx.close()
         
-        # Agrupar por orden
         ordenes = {}
         for row in historial:
             oid = row['order_id']
@@ -292,3 +282,17 @@ def obtener_historial_compras(user_id):
     except mysql.connector.Error as err:
         print("Error al obtener historial:", err)
         return []
+
+def actualizar_usuario(user_id, fname, lastname):
+    try:
+        cnx = mysql.connector.connect(**db_config)
+        cursor = cnx.cursor()
+        query = "UPDATE users SET fname = %s, lastname = %s WHERE id = %s"
+        cursor.execute(query, (fname, lastname, user_id))
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+        return True
+    except mysql.connector.Error as err:
+        print("Error al actualizar usuario:", err)
+        return False

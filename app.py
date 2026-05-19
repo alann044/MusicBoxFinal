@@ -4,14 +4,14 @@ from flask_bcrypt import Bcrypt
 from server.db import (
     init_db, agregar_usuario, obtener_usuario_por_email, obtener_usuario_por_id,
     obtener_productos, obtener_producto_por_id, crear_producto,
-    agregar_al_carrito, obtener_carrito, vaciar_carrito, crear_orden, obtener_historial_compras
+    agregar_al_carrito, obtener_carrito, vaciar_carrito, crear_orden, obtener_historial_compras,
+    actualizar_usuario
 )
 
 app = Flask(__name__, template_folder='client/templates', static_folder='static')
 app.secret_key = os.environ.get('SECRET_KEY', 'NOTMTSCNMQQ')
 bcrypt = Bcrypt(app)
 
-# Inicializar Base de Datos al arrancar (solo en entorno local/dev)
 init_db()
 
 def login_required(f):
@@ -47,7 +47,6 @@ def contact():
 
 @app.route('/auth', methods=['GET', 'POST'])
 def auth():
-    # Si el usuario esta logeado, redirige a Home
     if session.get('logged_in'):
         return redirect(url_for('home'))
 
@@ -74,7 +73,7 @@ def auth():
             email = request.form.get('email')
             password = request.form.get('password')
             confirm_password = request.form.get('cpassword')
-            role = request.form.get('role', 'client') # Por defecto es cliente
+            role = request.form.get('role', 'client')
             
             if password != confirm_password:
                 return render_template('auth.html', error="Error: Las contraseñas no coinciden.", active_tab='signup')
@@ -83,7 +82,6 @@ def auth():
             user_id = agregar_usuario(fname, lastname, email, password_hash, role)
 
             if user_id:
-                # Login automático tras registro
                 session['logged_in'] = True
                 session['user_id'] = user_id
                 session['user_email'] = email
@@ -92,7 +90,6 @@ def auth():
             else: 
                 return render_template('auth.html', error="Error al registrar usuario. El email ya existe.", active_tab='signup')
                 
-    # GET request
     return render_template('auth.html', active_tab='login')
 
 @app.route('/logout')
@@ -115,11 +112,9 @@ def product_detail(product_id):
     if not producto:
         return redirect(url_for('store'))
         
-    # Guardar en visitados recientemente
     if 'recent' not in session:
         session['recent'] = []
     
-    # Evitar duplicados consecutivos y mantener limite de 4
     if product_id in session['recent']:
         session['recent'].remove(product_id)
     session['recent'].insert(0, product_id)
@@ -163,7 +158,6 @@ def checkout():
         
     total = sum(item['price'] * item['quantity'] for item in carrito_items)
     
-    # Crear orden y guardar items
     crear_orden(user_id, total, carrito_items)
     vaciar_carrito(user_id)
     
@@ -201,7 +195,6 @@ def profile():
     if user['role'] == 'client':
         historial = obtener_historial_compras(user['id'])
         
-    # Obtener productos recientes
     recent_products = []
     if 'recent' in session:
         for pid in session['recent']:
@@ -211,10 +204,21 @@ def profile():
                 
     return render_template('profile.html', user=user, historial=historial, recent_products=recent_products)
 
-@app.route('/configuracion')
+@app.route('/configuracion', methods=['GET', 'POST'])
 @login_required
 def settings():    
     user = inject_user_data()
+    if request.method == 'POST':
+        fname = request.form.get('fname')
+        lastname = request.form.get('lastname')
+        if fname:
+            if actualizar_usuario(user['id'], fname, lastname):
+                flash('Nombre de usuario actualizado con éxito.', 'success')
+                user = inject_user_data()
+            else:
+                flash('Error al actualizar el nombre de usuario.', 'error')
+        else:
+            flash('El nombre no puede estar vacío.', 'error')
     return render_template('settings.html', user=user)
 
 if __name__ == '__main__':

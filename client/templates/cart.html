@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Carrito - MusicBox{% endblock %}
+{% block body_class %}page-cart{% endblock %}
 
 {% block content %}
 <div class="cart-container">
@@ -23,8 +24,8 @@
                     <img src="{{ item.image_url }}" alt="{{ item.title }}" class="cart-item-img">
                 </td>
                 <td>
-                    <h3 style="margin-bottom: 5px;">{{ item.title }}</h3>
-                    <p style="color: #666; font-size: 0.9rem;">Vendido por ID: {{ item.seller_id }}</p>
+                    <h3 style="margin-bottom: 5px; color: #fff;">{{ item.title }}</h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem;">Vendido por ID: {{ item.seller_id }}</p>
                 </td>
                 <td>${{ item.price }} MXN</td>
                 <td>{{ item.quantity }}</td>
@@ -42,8 +43,8 @@
             </form>
             
             <div style="margin-top: 2rem; text-align: left;">
-                <h4 style="margin-bottom: 0.5rem;">TIPOS DE PAGO</h4>
-                <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">Métodos seguros y garantizados.</p>
+                <h4 style="margin-bottom: 0.5rem; color: #fff;">TIPOS DE PAGO</h4>
+                <p style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 1rem;">Métodos seguros y garantizados.</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 20px; display: block; margin-bottom: 10px;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 20px;">
             </div>

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ producto.title }} - MusicBox{% endblock %}
+{% block body_class %}page-detail{% endblock %}
 
 {% block content %}
 <div class="product-detail-container">
     <div class="product-info">
-        <h1 style="font-size: 3rem; margin-bottom: 0;">{{ producto.title }}</h1>
-        <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Vendido por ID: {{ producto.seller_id }}</p>
+        <h1 style="font-size: 3rem; margin-bottom: 0; color: #fff;">{{ producto.title }}</h1>
+        <p style="color: #a1a1aa; font-size: 1.2rem; margin-bottom: 2rem;">Vendido por ID: {{ producto.seller_id }}</p>
         
         <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
             <span style="font-weight: bold; font-size: 1.2rem;">${{ producto.price }} MXN</span>

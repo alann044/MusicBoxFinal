@@ -4,10 +4,17 @@
     --primary-color: #F8E71C; /* Amarillo brillante */
     --black-color: #000000;
     --white-color: #FFFFFF;
-    --text-color: #333333;
-    --border-color: #DDDDDD;
-    --bg-light: #F9F9F9;
+    --text-color: #e4e4e7; /* Zinc 200 */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --bg-light: #09090b; /* Zinc 950 */
     --font-family: 'Inter', sans-serif;
+    
+    /* New theme specific variables */
+    --bg-gradient: radial-gradient(circle at top, #1e1b4b 0%, #09090b 100%);
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --heading-color: #ffffff;
+    --text-muted: #a1a1aa; /* Zinc 400 */
 }
 
 * {
@@ -19,13 +26,45 @@
 body {
     font-family: var(--font-family);
     color: var(--text-color);
-    background-color: var(--white-color);
+    background-size: cover;
     line-height: 1.6;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+body.page-default, body.page-store {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/microphone_bg.jpg');
+}
+
+body.page-home {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/concert_bg.jpg');
+}
+
+body.page-detail {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/turntable_bg.jpg');
+}
+
+body.page-cart {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/lounge_bg.jpg');
+}
+
+body.page-user {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/bokeh_bg.jpg');
+}
+
+body.page-info {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/concert_bg.jpg');
+}
+
+body.page-auth {
+    background-image: linear-gradient(rgba(10, 9, 15, 0.5), rgba(10, 9, 15, 0.8)), url('../img/bokeh_bg.jpg');
 }
 
 /* Tipografía */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--black-color);
+    color: var(--heading-color);
     font-weight: 600;
 }
 
@@ -116,8 +155,11 @@ a {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: transparent;
-    border: 2px solid var(--black-color);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -130,8 +172,8 @@ a {
 }
 
 .btn-back-top:hover {
-    background-color: var(--black-color);
-    color: var(--white-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
 }
 
 /* Home / Hero */
@@ -201,8 +243,8 @@ a {
 
 .product-card {
     text-align: center;
-    background: var(--white-color);
-    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -210,24 +252,27 @@ a {
 
 .product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
 }
 
 .product-img {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--card-border);
     margin-bottom: 1rem;
 }
 
 .product-title {
     font-size: 1.2rem;
     font-weight: 600;
+    color: var(--white-color);
 }
 
 .product-price {
-    color: #555;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 /* Detalle de Producto */
@@ -284,16 +329,18 @@ a {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    background-color: var(--bg-light);
 }
 
 .auth-card {
-    background: var(--white-color);
+    background: rgba(26, 26, 30, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .form-group {
@@ -303,15 +350,25 @@ a {
 .form-control {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--white-color);
     font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 0 2px rgba(248, 231, 28, 0.2);
 }
 
 .tabs {
     display: flex;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--card-border);
 }
 
 .tab {
@@ -320,9 +377,11 @@ a {
     padding: 0.5rem;
     cursor: pointer;
     font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
 }
 
 .tab.active {
-    border-bottom: 2px solid var(--black-color);
-    color: var(--black-color);
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
